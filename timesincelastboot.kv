@@ -1,0 +1,115 @@
+MainWindow:
+
+<MainWindow>:
+	orientation: "vertical"
+	padding: "-2dp"
+	spacing: "0dp"
+	canvas.before:
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: "atlas://images/TimeSinceLastBoot.atlas/background"
+	MainView:
+
+<MainView>:
+	orientation: "vertical"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: "atlas://images/TimeSinceLastBoot.atlas/alpha"
+	TopBar:
+		padding: "16dp",0,0,0
+		Label:
+			text: "Time Since Last Boot"
+			halign: "left"
+			text_size: self.width, self.height-dp(28)
+			font_name: "fonts/Roboto-Medium.ttf"
+		Button:
+			on_release: app.root.show_about_view()
+			size_hint: None, 1
+			width: "56dp"
+			Image:
+				size: "32dp", "32dp"
+				pos: self.parent.pos[0]+dp(12), self.parent.pos[1]+dp(12)
+				source: "atlas://images/TimeSinceLastBoot.atlas/action_about"
+	BoxLayout:
+		orientation: "vertical"
+		padding: "16dp"
+		Label:
+			text_size: self.size
+			valign: "middle"
+			halign: "center"
+			color: 0,0,0,0.54
+			text: app.clockController.TIME_SINCE_BOOT
+	BottomBar:
+		text: "OK"
+		on_release: app.close_app()
+		
+<AboutView>:
+	orientation: "vertical"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: "atlas://images/TimeSinceLastBoot.atlas/alpha"
+	TopBar:
+		Button:
+			size_hint: None, 1
+			width: "150dp"
+			on_release: app.root.show_main_view()
+			BoxLayout:
+				padding: "16dp",0,0,0
+				spacing: "16dp"
+				pos: self.parent.pos
+				size: self.parent.size
+				Image:
+					size_hint: None, 1
+					width: "23dp"
+					source: "atlas://images/TimeSinceLastBoot.atlas/action_back"
+				Label:
+					text: "About"
+					halign: "left"
+					font_name: "fonts/Roboto-Medium.ttf"
+					text_size: self.width, self.height-dp(28)
+	BoxLayout:
+		orientation: "vertical"
+		padding: "16dp"
+		Label:
+			text_size: self.size
+			font_size: "16dp"
+			valign: "middle"
+			color: 0,0,0,0.54
+			halign: "left"
+			text: "Application shows the time passed from the moment in which device was booted to the Android system. It should be helpful if you want to know, how long your device was used without the reboot. \n\nApplication developed with Kivy framework by Rafal Kaczor."
+	BottomBar:
+		text: "OK"
+		on_release: app.close_app()
+		
+
+<TopBar>:
+	orientation: "horizontal"
+	size_hint: 1, None
+	height: "56dp"
+	color: 1,1,1,1
+	canvas.before:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: "atlas://images/TimeSinceLastBoot.atlas/button_normal"
+
+<BottomBar>:
+	size_hint: 1, None
+	height: "50dp"
+	color: 1,1,1,1
+			
+<Button>:
+	background_normal: "atlas://images/TimeSinceLastBoot.atlas/button_normal"
+	background_down: "atlas://images/TimeSinceLastBoot.atlas/button_down"
+	font_name: "fonts/Roboto-Medium.ttf"
+	font_size: "12dp"
+	color: 1,1,1,1
+
+<Label>:
+	font_size: "20dp"
+	font_name: "fonts/Roboto-Regular.ttf"
